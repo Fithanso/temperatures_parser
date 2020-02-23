@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Парсер</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+</head>
+<body>
+<div class="container">
+    <div class="row">
+        <form method="post" action="{% url 'run_parsing' country=country town=town  %}" style="margin: 60px 50px 40px 70px">
+            {% csrf_token %}
+            <label>Выберите год</label>
+            <select name="year">
+                {% for year in years %}
+                    <option value="{{ year.1 }}">{{year.1}}</option>
+                {% endfor %}
+            </select>
+
+            <label>Выберите месяц</label>
+            <select name="month">
+
+                <option value="january">Январь</option>
+                <option value="february">Февраль</option>
+                <option value="march">Март</option>
+                <option value="april">Апрель</option>
+                <option value="may">Май</option>
+                <option value="june">Июнь</option>
+                <option value="july">Июль</option>
+                <option value="august">Август</option>
+                <option value="september">Сентябрь</option>
+                <option value="october">Октябрь</option>
+                <option value="november">Ноябрь</option>
+                <option value="december">Декабрь</option>
+
+            </select>
+            <button type="submit" class="btn btn-primary">Спарсить</button>
+        </form>
+    </div>
+</div>
+</body>
+</html>

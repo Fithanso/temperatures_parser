@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Страны</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+</head>
+<body>
+<div class="container">
+
+    {% for country in countries %}
+        <a href="{% url 'country_detail_url' country=country.1 %}">{{country.2}}</a> <br>
+    {% endfor %}
+
+    <div class="row" style="margin: 60px 50px 40px 70px">
+        <a href="{% url 'parse_countries' %}" class="btn btn-primary">Cпарсить страны</a>
+    </div>
+
+    <div class="row" style="margin: 60px 50px 40px 70px">
+        <a href="{% url 'parse_years' %}" class="btn btn-primary">Cпарсить годы</a>
+    </div>
+
+</div>
+</body>
+</html>
