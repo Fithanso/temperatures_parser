@@ -147,12 +147,18 @@ def parse_month(country, town, month, year):
     days_result = []
 
     for li in ul:
-        a = li.find('a')
 
-        if a:
-            date = a.find('div').text
-            day_temp = a.find('span').text.replace('°', '')
-            night_temp = a.find('p').text.replace('°', '')
+        if not (len(li.contents) == 2) and len(li.contents) > 0:  # если ячейка месяца не пуста
+
+            a = li.find('a')
+            if a:  # li класса ... foreacast. на сайте в css названии класса опечатка
+                date = a.find('div').text
+                day_temp = a.find('span').text.replace('°', '')
+                night_temp = a.find('p').text.replace('°', '')
+            if not a:  # li класса ... forecast-statistics
+                date = li.find('div').text
+                day_temp = li.find('span').text.replace('°', '')
+                night_temp = li.find('p').text.replace('°', '')
 
             result_tuple = ()
             result_tuple = result_tuple + (date,)
@@ -162,6 +168,7 @@ def parse_month(country, town, month, year):
             result_tuple = result_tuple + (night_temp,)
             result_tuple = result_tuple + (town,)
             result_tuple = result_tuple + (country,)
+
             days_result.append(result_tuple)
 
     save('temperatures', days_result)
